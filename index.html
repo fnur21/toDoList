@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+    <div id="header">
+        <h2> Yapılacaklar Listesi</h2>
+        <div class="todoInput">
+            <input type="text" name="task" id="task">
+            <button type="button" id="taskSend" onclick="addTask()">+</button>
+        </div>
+        <p id="errorMessage">Lütfen geçerli bir görev giriniz</p>
+<!--Açılır Kategori Seçim Menüsü-->
+        <select name="todo-option" id="todoOptions">
+            <option value="personal">KİŞİSEL</option>
+            <option value="work">OKUL</option>
+            <option value="other">DİĞER</option>
+        </select>
+        <div style="height: 1px; width: 500px; background-color: white;"></div>
+    </div>
+<!-- Kategoriler -->
+    <div id="categorys">
+<!-- Personal -->
+        <div class="category" id="personal">
+            <h3>KİŞİSEL GÖREV</h3>
+            <div id="personalTasks" class="taskContainer">
+            </div>
+        </div>
+<!-- Business -->
+        <div class="category" id="business">
+            <h3>OKUL</h3>
+            <div id="businessTasks" class="taskContainer">
+
+            </div>
+        </div>
+<!-- Other -->
+        <div class="category" id="other">
+            <h3>DİĞER GÖREVLER</h3>
+            <div id="otherTasks" class="taskContainer">
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
