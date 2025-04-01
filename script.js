@@ -14,7 +14,7 @@ function addTask() {
         let taskName = `
             <div class="task">
                 <p>${task.value}</p>
-                <div class="deleteAndCheck">MMMMMMMMMMMMMMMMMMMM
+                <div class="deleteAndCheck">
                     <i class="far fa-trash-alt"></i>
                     <i class="fas fa-check"></i>
                 </div>
