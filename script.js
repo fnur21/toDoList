@@ -1,51 +1,67 @@
-const task = document.querySelector("#task");
-const button = document.querySelector("#taskSend");
-const error = document.querySelector("#errorMessage");
-const taskCategory = document.querySelector("#todoOptions");
-const personal = document.querySelector("#personalTasks");
-const business = document.querySelector("#businessTasks");
-const other = document.querySelector("#otherTasks");
+document.addEventListener('DOMContentLoaded', function() {
+    const addTDButton = document.getElementById('addTD');
+    const toDoContainer = document.getElementById('toDoContainer');
+    const inputText = document.getElementById('inputText');
+    const clearTD = document.getElementById('clearTD');
 
-function addTask() {
-    if (task.value === "" || task.value === " "){
-        error.style.opacity = "1";
-        task.value = "";
-    } else{
-        let taskName = `
-            <div class="task">
-                <p>${task.value}</p>
-                <div class="deleteAndCheck">
-                    <i class="far fa-trash-alt"></i>
-                    <i class="fas fa-check"></i>
-                </div>
-            </div>
-        `;
-        error.style.opacity = "0";
-        if (taskCategory.value == "personal"){
-            personal.insertAdjacentHTML("beforeend", taskName);
-        };
-        if (taskCategory.value == "work"){
-            business.insertAdjacentHTML("beforeend", taskName);
-        };
-        if (taskCategory.value == "other"){
-            other.insertAdjacentHTML("beforeend", taskName);
-        };
-        task.value = "";
-        task.focus();
-    }
-};
-
-document.addEventListener("click", function(e){
-    if (e.target.classList.contains('fa-trash-alt')){
-        e.target.closest(".task").remove();
-    } else if (e.target.classList.contains('fa-check')){
-        let decoration = e.target.closest(".task").querySelector("p");
-        if (decoration.style.textDecoration == "line-through"){
-            decoration.style.textDecoration = "none";
-            decoration.style.color = "white";
-        } else{
-            decoration.style.textDecoration = "line-through";
-            decoration.style.color = "#aaaaab";
+    addTDButton.addEventListener('click', function() {
+        if (inputText.value.trim() === '') {
+            alert('Lütfen bir görev girin!');
+            return;
         }
-    }
+
+        const todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+        
+        const taskText = document.createElement('span');
+        taskText.textContent = inputText.value;
+        
+        const deleteIcon = document.createElement('i');
+        deleteIcon.classList.add('fas', 'fa-times');
+        deleteIcon.style.color = 'var(--danger-color)';
+        
+        todoItem.appendChild(taskText);
+        todoItem.appendChild(deleteIcon);
+        toDoContainer.appendChild(todoItem);
+        
+        inputText.value = '';
+        inputText.focus();
+
+        // Tek tıkla tamamlandı işaretleme
+        todoItem.addEventListener('click', function(e) {
+            if (e.target !== deleteIcon) {
+                todoItem.classList.toggle('completed');
+            }
+        });
+
+        // Çift tıkla silme
+        todoItem.addEventListener('dblclick', function() {
+            todoItem.classList.add('fade-out');
+            setTimeout(() => {
+                todoItem.remove();
+            }, 300);
+        });
+
+        // Delete icon ile silme
+        deleteIcon.addEventListener('click', function() {
+            todoItem.classList.add('fade-out');
+            setTimeout(() => {
+                todoItem.remove();
+            }, 300);
+        });
+    });
+
+    // Tüm görevleri temizle
+    clearTD.addEventListener('click', function() {
+        if (confirm('Tüm görevleri silmek istediğinize emin misiniz?')) {
+            toDoContainer.innerHTML = '';
+        }
+    });
+
+    // Enter tuşu ile ekleme
+    inputText.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addTDButton.click();
+        }
+    });
 });
