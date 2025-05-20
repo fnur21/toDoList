@@ -1,50 +1,29 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!--tarayıcıya dosyanın html5 belgesi olduğunu belirtir-->
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todolist</title>
+    <title>TO-DOlist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body>
-    <div id="header">
-        <h2> Yapılacaklar Listesi</h2>
-        <div class="todoInput">
-            <input type="text" name="task" id="task">
-            <button type="button" id="taskSend" onclick="addTask()">+</button>
-        </div>
-        <p id="errorMessage">Lütfen bir görev giriniz</p>
-<!--Açılır Kategori Seçim Menüsü-->
-        <select name="todo-option" id="todoOptions">
-            <option value="personal">KİŞİSEL</option>
-            <option value="work">OKUL</option>
-            <option value="other">DİĞER</option>
-        </select>
-        <div style="height: 1px; width: 500px; background-color: white;"></div>
-    </div>
-<!-- Kategoriler -->
-    <div id="categorys">
-<!-- Personal -->
-        <div class="category" id="personal">
-            <h3>KİŞİSEL GÖREV</h3>
-            <div id="personalTasks" class="taskContainer">
+    <div class="app-container">
+        <div class="header">
+            <h1><i class="fas fa-tasks"></i> TO-DOlist</h1>
+            <div class="input-group">
+                <input type="text" id="inputText" placeholder="Görev ekle...">
+                <button id="addTD"><i class="fas fa-plus"></i> Ekle</button>
+                <button id="clearTD"><i class="fas fa-trash"></i> Temizle</button>
             </div>
         </div>
-<!-- Business -->
-        <div class="category" id="business">
-            <h3>OKUL</h3>
-            <div id="businessTasks" class="taskContainer">
-
-            </div>
+        
+        <div class="todo-list" id="toDoContainer">
+            <!-- Görevler buraya eklenecek -->
         </div>
-<!-- Other -->
-        <div class="category" id="other">
-            <h3>DİĞER GÖREVLER</h3>
-            <div id="otherTasks" class="taskContainer">
-
-            </div>
+        
+        <div class="footer">
+            <p>Çift tıklama ile görev silini..</p>
         </div>
     </div>
     <script src="script.js"></script>
